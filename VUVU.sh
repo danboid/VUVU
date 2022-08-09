@@ -11,10 +11,16 @@
 ########## USER VARIABLES ##########
 
 # Name to use for new virtual machine
-VMNAME=testvm
+VMNAME=Ubuntu-Server-22.04
 
 # Size of VM hard disk in MB
-HDDSIZE=25000
+HDDSIZE=20000
+
+# RAM for VM
+RAMSIZE=4096
+
+# Number of CPUs
+CPUSIZE=2
 
 # URL prefix of Ubuntu server .iso and its SHA256SUMS
 PREFIX=https://releases.ubuntu.com/22.04/
@@ -156,7 +162,7 @@ cloud-localds seed.iso user-data meta-data
 VBoxManage createvm --name ${VMNAME} --ostype "Ubuntu_64" --register --basefolder ${HOME}/VirtualBox\ VMs/
 
 # Configure CPU cores and memory
-VBoxManage modifyvm ${VMNAME} --cpus 2 --memory 4096 --vram 128
+VBoxManage modifyvm ${VMNAME} --cpus ${CPUSIZE} --memory ${RAMSIZE} --vram 128
 
 # Create ltsp-image compatible VMDK format disk image
 VBoxManage createhd --filename ${HOME}/VirtualBox\ VMs/${VMNAME}/${VMNAME}.vmdk --size ${HDDSIZE} --format VMDK
