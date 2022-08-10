@@ -162,7 +162,7 @@ cloud-localds seed.iso user-data meta-data
 VBoxManage createvm --name ${VMNAME} --ostype "Ubuntu_64" --register --basefolder ${HOME}/VirtualBox\ VMs/
 
 # Configure CPU cores and memory
-VBoxManage modifyvm ${VMNAME} --cpus ${CPUSIZE} --memory ${RAMSIZE} --vram 128
+VBoxManage modifyvm ${VMNAME} --cpus ${CPUSIZE} --memory ${RAMSIZE} --graphicscontroller vmsvga --vram 128
 
 # Create ltsp-image compatible VMDK format disk image
 VBoxManage createhd --filename ${HOME}/VirtualBox\ VMs/${VMNAME}/${VMNAME}.vmdk --size ${HDDSIZE} --format VMDK
