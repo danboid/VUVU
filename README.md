@@ -18,7 +18,7 @@ It also requires `wget` and `sha256sum` but both of these are installed by defau
 
 ## USAGE
 
-Open VUVU.sh and check the user variables are set correctly. You will probably want to change at least the name of the VM by configuring VMNAME. Run the script as a normal user under X or Wayland.
+Open VUVU.sh and check the user variables are set correctly, most importantly **ISO** and **PREFIX**. If ISO isn't set to the latest release of Ubuntu Server then the sha256 check will fail. Open the **PREFIX** URL in a browser to check what the latest ISO file name is. You may also want to change the name of the VM by setting **VMNAME**. After configuring the user variables, run the script in a terminal as a normal user under X or Wayland.
 
 The Ubuntu installation isn't 100% automated because you still have to type `yes` when the Ubuntu installer asks `Continue with autoinstall?`. You can edit the kernel arguments from the GRUB boot menu and manually add `autoinstall` to avoid the continue prompt. For a 100% automated install you would have to remaster the Ubuntu iso to include the `autoinstall` kernel boot argument by default.
 
