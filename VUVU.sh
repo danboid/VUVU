@@ -14,7 +14,7 @@
 VMNAME=Ubuntu-Server-22.04
 
 # Size of VM hard disk in MB
-HDDSIZE=20000
+HDDSIZE=24444
 
 # RAM for VM
 RAMSIZE=4096
