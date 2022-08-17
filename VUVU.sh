@@ -168,7 +168,7 @@ VBoxManage modifyvm ${VMNAME} --cpus ${CPUSIZE} --memory ${RAMSIZE} --graphicsco
 VBoxManage createhd --filename ${HOME}/VirtualBox\ VMs/${VMNAME}/${VMNAME}.vmdk --size ${HDDSIZE} --format VMDK
 
 # Add a SATA controller
-VBoxManage storagectl ${VMNAME} --name "SATA Controller" --add sata --controller IntelAhci
+VBoxManage storagectl ${VMNAME} --name "SATA Controller" --add virtio --controller VirtIO
 
 # Attach HDD image
 VBoxManage storageattach ${VMNAME} --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium ${HOME}/VirtualBox\ VMs/${VMNAME}/${VMNAME}.vmdk
