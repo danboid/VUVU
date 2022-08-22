@@ -4,6 +4,8 @@ VUVU automates the creation of VirtualBox Ubuntu Server VMs.
 
 VUVU downloads the ISO, checks its sha256 checksum, creates a new VBox VM and then installs Ubuntu Server in it using a partition scheme suitable for use as a LTSP disk image source.
 
+This repo also includes a simple Ansible playbook which could be used as the basis of creating a (LTSP) desktop image. It is likely most useful for its "Remove unwanted packages" task which lists most of the packages Ubuntu Server installs by default that you probabaly don't want installed on a desktop system.
+
 ## REQUIREMENTS
 
 VUVU requires that both VirtualBox and cloud-image-utils are installed before it can be used.

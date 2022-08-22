@@ -1,0 +1,141 @@
+# This playbook expects to be run as root with ansible-playbook on a vanilla Ubuntu Server 22.04 install
+# which is most easily installed using VUVU https://github.com/danboid/VUVU
+
+---
+- name: Configure LTSP client
+  hosts: localhost
+  tasks:
+    - name: Remove LXD snap package
+      community.general.snap:
+        name: lxd
+        state: absent
+
+    - name: Remove unwanted packages
+      apt:
+        name:
+          - bcache-tools
+          - bind9-dnsutils
+          - bind9-host
+          - bind9-libs
+          - bolt
+          - btrfs-progs
+          - cloud-guest-utils
+          - cloud-init
+          - cloud-initramfs-copymods
+          - cloud-initramfs-dyn-netconf
+          - eatmydata
+          - ethtool
+          - friendly-recovery
+          - fwupd
+          - hdparm
+          - iptables
+          - landscape-common
+          - lxd-agent-loader
+          - multipath-tools
+          - openssh-server
+          - open-iscsi
+          - open-vm-tools
+          - sg3-utils
+          - thin-provisioning-tools
+          - ufw
+          - unattended-upgrades
+          - xfsprogs
+        state: absent
+
+    - name: Upgrade all apt packages
+      apt: upgrade=dist force_apt_get=yes update_cache=yes
+
+    - name: Install packages from official repo
+      apt:
+        name:
+          - arduino
+          - audacity
+          - caja-open-terminal
+          - chromium-browser
+          - dos2unix
+          - epoptes-client
+          - ffmpegthumbnailer
+          - filezilla
+          - firefox
+          - gfortran
+          - gimp
+          - gimp-gutenprint
+          - gimp-plugin-registry
+          - git
+          - gnome-shell-extension-manager
+          - gnome-tweaks
+          - grace
+          - hexedit
+          - jmol
+          - kubuntu-desktop
+          - libfftw3-dev
+          - libopenblas-dev
+          - libopenmpi-dev
+          - libpam-google-authenticator
+          - lightdm
+          - ltsp
+          - mate-desktop-environment
+          - mate-tweak
+          - mhwaveedit
+          - micro
+          - mpv
+          - ncdu
+          - nvidia-driver-515
+          - pwgen
+          - python-is-python3
+          - python3-pyqt5.qtsql
+          - rgbpaint
+          - simplescreenrecorder
+          - texlive
+          - texstudio
+          - thunar
+          - thunar-archive-plugin
+          - tmux
+          - tree
+          - ubuntu-desktop
+          - unrar
+          - vim
+          - vim-doc
+          - virt-manager
+          - virtualbox
+          - virtualbox-guest-additions-iso
+          - xfce4
+        state: present
+
+    - name: Remove more unwanted packages
+      apt:
+        name:
+          - cups
+          - gnome-initial-setup
+          - ktorrent
+        state: absent
+
+    - name: Install snap packages
+      community.general.snap:
+        name:
+          - code
+          - phpstorm
+        classic: yes
+        state: present
+
+    - name: Disable apport bug reporter
+      lineinfile:
+        path: /etc/default/apport
+        regexp: '^enabled'
+        line: enabled=0
+
+    - name: Set lightdm as display manager task 1
+      file: path=/etc/systemd/system/display-manager.service src=/lib/systemd/system/lightdm.service state=link
+
+    - name: Set lightdm as display manager task 2
+      lineinfile:
+        path: /etc/X11/default-display-manager
+        regexp: '^/usr/sbin/gdm3'
+        line: /usr/sbin/lightdm
+
+    - name: Create lightdm.conf
+      copy:
+        dest: /etc/lightdm/lightdm.conf
+        content: |
+          [SeatDefaults]
+          greeter-hide-users=true
