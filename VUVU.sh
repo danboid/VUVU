@@ -6,7 +6,7 @@
 # VUVU automates the creation of VirtualBox Ubuntu Server VMs.
 # The default partitioning scheme is configured how LTSP prefers its images, as a single ext4 partition.
 # Check the user variables are defined correctly first then run it as a normal user under X or Wayland.
-
+# You may also need to change the storage controller command, see comment below.
 
 ########## USER VARIABLES ##########
 
@@ -168,6 +168,8 @@ VBoxManage modifyvm ${VMNAME} --cpus ${CPUSIZE} --memory ${RAMSIZE} --graphicsco
 VBoxManage createhd --filename ${HOME}/VirtualBox\ VMs/${VMNAME}/${VMNAME}.vmdk --size ${HDDSIZE} --format VMDK
 
 # Add a SATA controller
+# If you have issues with the virtio storage controller, comment it out and uncomment the next line.
+# VBoxManage storagectl ${VMNAME} --name "SATA Controller" --add sata --controller IntelAhci
 VBoxManage storagectl ${VMNAME} --name "SATA Controller" --add virtio --controller VirtIO
 
 # Attach HDD image
