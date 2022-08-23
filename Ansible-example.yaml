@@ -130,7 +130,7 @@
     - name: Set lightdm as display manager task 2
       lineinfile:
         path: /etc/X11/default-display-manager
-        regexp: '^/usr/sbin/gdm3'
+        regexp: '^/usr/sbin/'
         line: /usr/sbin/lightdm
 
     - name: Create lightdm.conf
@@ -139,3 +139,6 @@
         content: |
           [SeatDefaults]
           greeter-hide-users=true
+
+    - name: Clean apt cache
+      shell: apt clean
