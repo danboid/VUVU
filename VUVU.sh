@@ -165,7 +165,7 @@ VBoxManage createvm --name ${VMNAME} --ostype "Ubuntu_64" --register --basefolde
 VBoxManage modifyvm ${VMNAME} --cpus ${CPUSIZE} --memory ${RAMSIZE} --graphicscontroller vmsvga --vram 128
 
 # Create ltsp-image compatible VMDK format disk image
-VBoxManage createhd --filename ${HOME}/VirtualBox\ VMs/${VMNAME}/${VMNAME}.vmdk --size ${HDDSIZE} --format VMDK
+VBoxManage createhd --filename ${HOME}/VirtualBox\ VMs/${VMNAME}/${VMNAME}.vmdk --size ${HDDSIZE} --format VMDK --variant Fixed
 
 # Add a SATA controller
 # If you have issues with the virtio storage controller, comment it out and uncomment the next line.
