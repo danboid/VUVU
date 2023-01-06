@@ -20,7 +20,7 @@ PREFIX=https://releases.ubuntu.com/22.04/
 VMNAME=Ubuntu-Server-22.04
 
 # Size of VM hard disk in MB
-HDDSIZE=24444
+HDDSIZE=33333
 
 # RAM for VM
 RAMSIZE=4096
