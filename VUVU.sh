@@ -11,7 +11,7 @@
 ########## USER VARIABLES ##########
 
 # Ubuntu Server iso filename (must be 20.04 or later)
-ISO=ubuntu-22.04.1-live-server-amd64.iso
+ISO=ubuntu-22.04.2-live-server-amd64.iso
 
 # URL prefix of Ubuntu server .iso and its SHA256SUMS
 PREFIX=https://releases.ubuntu.com/22.04/
