@@ -11,16 +11,16 @@
 ########## USER VARIABLES ##########
 
 # Ubuntu Server iso filename (must be 20.04 or later)
-ISO=ubuntu-22.04.2-live-server-amd64.iso
+ISO=ubuntu-24.04-live-server-amd64.iso
 
 # URL prefix of Ubuntu server .iso and its SHA256SUMS
-PREFIX=https://releases.ubuntu.com/22.04/
+PREFIX=https://releases.ubuntu.com/24.04/
 
 # Name to use for new virtual machine
-VMNAME=Ubuntu-Server-22.04
+VMNAME=Ubuntu-Server-24.04
 
 # Size of VM hard disk in MB
-HDDSIZE=33333
+HDDSIZE=55555
 
 # RAM for VM
 RAMSIZE=4096
